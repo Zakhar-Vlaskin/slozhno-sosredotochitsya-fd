@@ -1,19 +1,10 @@
-/*Заранее извиняюсь что код плохо читаемый 
-при следующей сдаче я обязательно это исправлю 
-Помогите пожалуйста с картинками в конце страници я не понимаю как 
-сделать чтобы они правильно всали и не приближались так сильно
-
-а еще вопрос по поводу кнопок в состоянии defolte 
-не могли бы вы подробнее расписать что от меня требуется
-кнопка должна иметь бордер если она активна или я не правильно понимаю
-а еще в состоянии авто кнопки меняют свой текст на просто белый я не понимаю как с
-этом работать */
 
 .page {
   /* сохраните в разметке и стилях класс page у тега body. Он удобен, чтобы составлять селекторы для разных цветовых тем. */
-  font-family: var(--main--font);
+  font-family: var(--main-font, sans-serif);
   font-size: 18px;
   font-weight: 400;
+  color: var(--main-text-color);
   background-color: var(--bg-color);
   background-image: var(--page-bg-image);
   background-position: center;
@@ -22,8 +13,8 @@
   background-attachment: fixed;
 }
 
+/*Секция Header*/
 .header {
-  position: relative;
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: 1fr;
@@ -32,7 +23,12 @@
   min-block-size: 668px;
 }
 
-.header::before {
+/*Декоративный элемент уголки*/
+.decorated-zone {
+  position: relative;
+}
+
+.decorated-zone::before {
   content: '';
   position: absolute;
   top: 10px;
@@ -43,7 +39,7 @@
   border-block-start: 1px solid var(--text-title-smaller, #FF0070);
 }
 
-.header::after {
+.decorated-zone::after {
   content: '';
   position: absolute;
   bottom: 10px;
@@ -54,6 +50,7 @@
   border-block-end: 1px solid var(--text-title-smaller, #FF0070);
 }
 
+/*Декоративный элемен REC*/
 .decorative__element {
   position: absolute;
   top: 10px;
@@ -98,11 +95,15 @@
 .header__theme-menu-button {
   line-height: 18px;
   text-transform: lowercase;
-  color: var(--text-title-smaller);
+  color: var(--color-text-menu);
   background-color: transparent;
   border: none;
   padding: 3px 13px;
   line-height: 20px;
+}
+
+.header__theme-menu-button_active {
+  border: 1px solid currentColor; 
 }
 
 .header__theme-menu-button:hover {
@@ -125,8 +126,10 @@
   line-height: 83%;
   grid-row: 2;
   grid-column: 1;
-  margin-inline-start: 10px;
+  align-self: center;
+  justify-self: start;
   max-inline-size: 355px;
+  margin-inline-start: 10px;
 }
 
 .content__text-block_header {
@@ -140,9 +143,10 @@
 }
 
 .content__paragraph {
-  color: var(--bg-color);
+  color: var(--color-text-header-title-small);
   font-weight: bold;
   line-height: 23.4px;
+  font-size: 18px;
 }
 
 .title__decor {
@@ -153,62 +157,38 @@
 .container__main {
   margin-block-start: 40px;
   display: grid;
-  grid-template-columns: min(355px, 1fr);
-  grid-template-rows: repeat(5, min(355px, 1fr));
-  gap: 50px;
-  justify-content: center;
-  align-items: center;
+
   padding: 0 10px;
 }
 
-.content__block-main:nth-child(1) {
-  grid-row: 1;
-  grid-column: 1;
-}
-
-.content__block-main:nth-child(2) {
-  grid-row: 2;
-  grid-column: 1;
-}
-
-.content__block-main:nth-child(3) {
-  grid-row: 3;
-  grid-column: 1;
-}
-
-.content__block-main:nth-child(4) {
-  grid-row: 4;
-  grid-column: 1;
-}
-
-.main__title-h2 {
+/*Главные Секции*/
+.section__title {
   text-wrap: wrap;
-  color: var(--text-title-smaller);
+  color: var(--color-title-main);
   font-size: 18px;
   line-height: 23.4px;
   font-weight: bold;
 }
 
-.main__title-h3 {
+.main__subtitle {
   margin-block-start: 20px;
   font-size: 18px;
   font-weight: bold;
-  color: var(--bg-color)
+  color: var(--color-text-header-title-small)
 }
 
-.main__title-h3:last-child {
+.main__subtitle:last-child {
   margin-block-start: 0;
 }
 
-.main__title-h4 {
+.main__subtitle-small {
   margin-block-start: 20px;
-  color: var(--bg-color);
+  color: var(--color-text-header-title-small);
   font-weight: 400;
 }
 
 .content__paragraph-main {
   margin-block-start: 10px;
-  color: var(--color-text-paragraph-main);
 }
 
 .content__paragraph-main a {
@@ -234,7 +214,6 @@ outline: 1px solid currentColor;
 }
 
 .footer {
-  position: relative;
   block-size: 100vh;
   min-block-size: 668px;
   display: grid;
@@ -245,72 +224,72 @@ outline: 1px solid currentColor;
   margin-block-start: 40px;
 }
 
-.footer::before {
-  content: '';
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  block-size: 25px;
-  inline-size: 25px;
-  border-inline-end: 1px solid var(--accent-color, #FF0070);
-  border-block-start: 1px solid var(--accent-color, #FF0070);
-}
-
-.footer::after {
-  content: '';
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  block-size: 25px;
-  inline-size: 25px;
-  border-inline-start: 1px solid var(--accent-color, #FF0070);
-  border-block-end: 1px solid var(--accent-color, #FF0070);
-}
-
 .footer__title {
   color: var(--text-color-title);
-  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
+  font-size: var(--logo-size);
   text-shadow: 2px 2px 0 var(--accent-color);
   line-height: 83%;
 }
 
 @media(width>=768px) {
+  :root {
+    --logo-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+  }
+
+  .decorated-zone::before {
+    top: 20px;
+    right: 20px;
+  }
+  
+  .decorated-zone::after {
+    bottom: 20px;
+    left: 20px;
+  }
+
+  /*Декоративный элемен REC*/
+.decorative__element {
+  position: absolute;
+  top: 20px;
+  right: 29px;
+}
+
   .header__theme-menu {
     margin-block-start: 192px;
+    margin-inline-end: 20px;
   }
 
   .header__title {
-    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
     max-inline-size: 577px;
+    margin-inline-start: 0;
   }
 
   .content__text-block_header {
     min-inline-size: 364px;
   }
 
-  .content__block-main:nth-child(1),
-  .content__block-main:nth-child(3) {
+  .concentration__problems,
+  .concentration__tips {
     display: grid;
     grid-template-columns: 236px 1fr; 
     gap: 20px;
   }
 
-  .content__block-main:nth-child(1) .main__title-h2 {
+  .concentration__problems .section__title {
     grid-column: 1 / 2;
   }
 
-  .content__block-main:nth-child(1) .main__content,
-  .content__block-main:nth-child(3) .main__content{
+  .concentration__problems .main__content,
+  .concentration__tips .main__content{
     grid-column: 2 / -1;
   }
 
-  .content__block-main:nth-child(1) .main__title-h3:first-child,
-  .content__block-main:nth-child(3) .main__title-h3:first-child
+  .concentration__problems .main__subtitle:first-child,
+  .concentration__tips .main__subtitle:first-child
    {
     margin-block-start: 0;
   }
 
-  .content__block-main:nth-child(2) .main__title-h2{
+  .concentration__reducers .section__title{
    inline-size: 236px;
   }
 
@@ -348,15 +327,18 @@ outline: 1px solid currentColor;
 
 }
 @media(width>=1024px) {
+
+
   
   .header__theme-menu {
     grid-row: 1;
     grid-column: 1;
     justify-self: center;
-    margin-block-start: 10px;
+    margin-block-start: 20px;
   }
   
   .header__theme-menu-list {
+    padding-inline-start: 21px;
     display: flex;
     gap: 11px;
   }
@@ -372,25 +354,24 @@ outline: 1px solid currentColor;
 
   .content__text-block_header {
     min-inline-size: 491px;
+    margin-block-start: 20px;
+    margin-inline-end: 20px;
   }
 
-  .content__block-main:nth-child(2) {
+  .concentration__reducers {
     display: grid;
     grid-template-rows: 47px 1fr;
   }
 
-  .content__block-main:nth-child(2) .main__title-h2 {
+  .concentration__reducers .section__title {
     grid-row: 1;
     inline-size: 315px;
   }
 
-  .content__block-main:nth-child(2) .main__content {
+  .concentration__reducers .main__content {
     grid-row: 2;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(315px, max-content));
     gap: 20px;
-  }
-
-  .decorative__element {
-    display: none;
   }
 }
