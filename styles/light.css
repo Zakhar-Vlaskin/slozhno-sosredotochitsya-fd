@@ -14,6 +14,7 @@
   --color-title-main: #353430;
   --main-text-color: #353430;
   --hover-button-effect: rgba(50 49 45 / 0.4);
+  --color-decorated-zone: #353430;
 }
 
 .theme-light .decorative__element {
